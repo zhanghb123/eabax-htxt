@@ -12,4 +12,8 @@ public class Test{
 	public Integer getId(){
 		return this.id;
 	}
+
+	public String toString(){
+		return "";
+	}
 }
