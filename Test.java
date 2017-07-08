@@ -1,5 +1,7 @@
 public class Test{
 
-	private Int id;
+	private Integer id;
 	private String name;
+	private Integer age;
+	private String telephone;
 }
