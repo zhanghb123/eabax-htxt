@@ -15,106 +15,26 @@
     <div id="bd">
     	<div id="main">
         	<div class="search-box ue-clear">
-            	<div class="search-area">
-                    <div class="kv-item ue-clear">
-                        <label>选择时间：</label>
-                        <div class="kv-item-content ue-clear">
-                            <span class="choose">
-                                <span class="checkboxouter">
-                                    <input type="radio" name="time" />
-                                    <span class="radio"></span>
-                                </span>
-                                <span class="text">全部</span>
-                            </span>
-                            <span class="choose">
-                                <span class="checkboxouter">
-                                    <input type="radio" name="time" />
-                                    <span class="radio"></span>
-                                </span>
-                                <span class="text">近3天</span>
-                            </span>
-                            <span class="choose">
-                                <span class="checkboxouter">
-                                    <input type="radio" name="time" />
-                                    <span class="radio"></span>
-                                </span>
-                                <span class="text">近一周</span>
-                            </span>
-                            <span class="choose">
-                                <span class="checkboxouter">
-                                    <input type="radio" name="time" />
-                                    <span class="radio"></span>
-                                </span>
-                                <span class="text">近一月</span>
-                            </span>
-                            <span class="choose">
-                                <span class="checkboxouter">
-                                    <input type="radio" name="time" data-define="define" />
-                                    <span class="radio"></span>
-                                </span>
-                                <span class="text">自定义</span>
-                            </span>
-                            <span class="define-input">
-                            	<input type="text" placeholder="开始时间" />
-                                <span class="division"></span>
-                                <input type="text" placeholder="结束时间" />
-                            </span>
-                        </div>
-                    </div>
-                    <div class="kv-item ue-clear">
-                        <label>选择类型:</label>
-                        <div class="kv-item-content">
-                            <select>
-                                <option>全部</option>
-                                <option>全部</option>
-                                <option>全部</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="search-button">
-                	<input class="button" type="button" value="查询" onclick="test();"/>
+                	<a href="javascript:search();" class="easyui-linkbutton" iconCls="icon-search">查询</a>
                 </div>
              </div>
              
              <div class="table">
-            	<div class="opt ue-clear">
-                	<span class="sortarea">
-                    	<span class="sort">
-                        	<label>排序：</label>
-                            <span class="name">
-                            	<i class="icon"></i>
-                                <span class="text">名称</span>
-                            </span>
-                        </span>
-                        
-                        <i class="list"></i>
-                        <i class="card"></i>
-                    </span>
-                	<span class="optarea">
-                        <a href="javascript:;" class="add">
-                            <i class="icon"></i>
-                            <span class="text">添加</span>
-                        </a>
-                        <a href="javascript:;" class="delete">
-                            <i class="icon"></i>
-                            <span class="text">删除</span>
-                        </a>
-                        
-                    </span>
-                </div>
-                
-                <table id="listUserRole" class="easyui-datagrid" title="Basic DataGrid" style="width:100%;height:330px">
-		<thead>
-			<tr>
-				<th data-options="field:'userRoleId',width:100,hidden:true">角色id</th>
-				<th data-options="field:'userRoleName',width:250">角色名称</th>
-				<th data-options="field:'userRoleDesc',width:250,align:'right'">角色描述</th>
-				<th data-options="field:'isInit',width:150,align:'right'">是否系统初始化</th>
-				<th data-options="field:'userRoleOrder',width:150,align:'right'">排列顺序</th>
-			</tr>
-		</thead>
-	</table>
+
+                <table id="listUserRole" class="easyui-datagrid" title="Basic DataGrid" 
+                style="width:100%;height:330px" remoteSort="true">
+					<thead>
+						<tr>
+							<th data-options="field:'userRoleId',width:100,hidden:true">角色id</th>
+							<th data-options="field:'userRoleName',width:250,sortable:true">角色名称</th>
+							<th data-options="field:'userRoleDesc',width:250,align:'right'">角色描述</th>
+							<th data-options="field:'isInit',width:150,align:'right'">是否系统初始化</th>
+							<th data-options="field:'userRoleOrder',width:150,align:'right'">排列顺序</th>
+						</tr>
+					</thead>
+				</table>
                 
             </div>
         </div>
@@ -130,12 +50,16 @@ $(function(){
 	$("#listUserRole").datagrid({
 		idField:"userRoleId",
 		title:null,
-		url:'/user/role',
+		url:'/user/role/list',
+		pageSize: 10,  
+		pageList: [5, 10, 20],  
+		pagination: true, //是否启用分页
 		method:'get',
 		striped:true,
 		nowrap:true,
 		loadMsg:"数据加载中...",
 		singleSelect:false,
+		//pageSize:5,
 		/* columns:[[
 		          {
 		        	  field:"userRoleName",
@@ -188,18 +112,17 @@ $(function(){
 		               }
 		               
 		               ]],
-		 pagination:true,
 		 rownumbers:true		 
        
 		
 	});
 	
 	$("#listUserRole").datagrid("getPager").pagination({
-		showPageList:false,
+		showPageList:true,
 		showRefresh:false,
-		pageSize:10,
+		//pageSize:5,
 		//pageNumber:1,
-		pageList:[10],
+		//pageList:[5,10],
 		beforePageText:"第",
 		afterPageText:"页  共{pages}页",
 		displayMsg:"当前显示{from}-{to}条记录  共{total} 条记录"
@@ -227,6 +150,15 @@ $(function(){
 		}
 	}
 	]
+	
+function search(){
+	$('#listUserRole').datagrid('reload');
+}
+
+
+function alertColumn(sort,order){ 
+	alert("22");
+	}
 	
 function test(){
 	var rows = $("#listUserRole").datagrid("getSelections");

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eabax.common.entity.EasyUIResult;
+import com.eabax.common.entity.PageOrderParam;
 import com.eabax.common.utils.EResult;
 import com.eabax.htxt.service.basic.BaseUserRoleService;
 
@@ -21,11 +22,16 @@ public class UserRoleController {
 	@Autowired
 	private BaseUserRoleService userRoleService;
 	
-	@RequestMapping("/user/role")
+	@RequestMapping("/user/role/list")
 	@ResponseBody
-	public EasyUIResult getUserRoles() throws Exception{
-		EasyUIResult result = userRoleService.selectUserRoles();
-		return result;
+	public EasyUIResult getUserRoles(PageOrderParam param) throws Exception{
+		//EasyUIResult result = userRoleService.selectUserRoles(page,rows);
+		System.out.println(param.getSort());
+		System.out.println(param.getOrder());
+		System.out.println(param.getPage());
+		System.out.println(param.getRows());
+		System.out.println();
+		return null;
 	}
 
 }

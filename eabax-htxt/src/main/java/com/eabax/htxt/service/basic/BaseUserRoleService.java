@@ -5,6 +5,6 @@ import com.eabax.common.utils.EResult;
 
 public interface BaseUserRoleService {
 	
-	EasyUIResult selectUserRoles() throws Exception;
+	EasyUIResult selectUserRoles(Integer page, Integer rows) throws Exception;
 
 }
