@@ -10,24 +10,23 @@ import java.util.List;
 
 public class EasyUIResult {
 
-	private Integer total;
+	private long total;
 	
 	private List<?> rows;
 	
-	public EasyUIResult(Integer total, List<?> rows) {
+	public EasyUIResult(long total, List<?> rows) {
 		this.total = total;
 		this.rows = rows;
 	}
 	
-	public EasyUIResult(long total, List<?> rows) {
-		this.total = (int) total;
-		this.rows = rows;
+	public EasyUIResult() {
+
 	}
 
-	public Integer getTotal() {
+	public long getTotal() {
 		return total;
 	}
-	public void setTotal(Integer total) {
+	public void setTotal(long total) {
 		this.total = total;
 	}
 	public List<?> getRows() {
