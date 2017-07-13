@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eabax.htxt.mapper.basic.BaseUserRoleMapper" >
+
+  <sql id="Base_Column_List" >
+    user_role_id,
+	user_role_name,
+	user_role_desc,
+	is_init,
+	user_role_order
+  </sql>
+  
+  <select id="selectUserRoles" resultType="userRole">
+    select
+    <include refid="Base_Column_List" />
+    from ba_user_role
+  </select>
+  
+  
+</mapper>
