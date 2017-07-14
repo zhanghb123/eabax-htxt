@@ -1,14 +1,13 @@
 package com.eabax.htxt.controller.basic;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.eabax.common.entity.EasyUIResult;
-import com.eabax.common.entity.PageOrderParam;
-import com.eabax.common.utils.EResult;
+import com.eabax.common.utils.Underline2Camel;
+import com.eabax.htxt.entity.basic.UserRoleParam;
 import com.eabax.htxt.service.basic.BaseUserRoleService;
 
 /**
@@ -24,14 +23,15 @@ public class UserRoleController {
 	
 	@RequestMapping("/user/role/list")
 	@ResponseBody
-	public EasyUIResult getUserRoles(PageOrderParam param) throws Exception{
-		//EasyUIResult result = userRoleService.selectUserRoles(page,rows);
-		System.out.println(param.getSort());
-		System.out.println(param.getOrder());
-		System.out.println(param.getPage());
-		System.out.println(param.getRows());
-		System.out.println();
-		return null;
+	public EasyUIResult getUserRoles(UserRoleParam param) throws Exception{
+		if(StringUtils.isNotBlank(param.getUserRoleName())){
+			param.setUserRoleName(new String(param.getUserRoleName().getBytes("iso-8859-1"), "utf-8"));
+		}
+		if(StringUtils.isNotBlank(param.getSort())){
+			param.setSort(Underline2Camel.camel2Underline(param.getSort()));
+		}
+		EasyUIResult result = userRoleService.selectUserRoles(param);
+		return result;
 	}
 
 }

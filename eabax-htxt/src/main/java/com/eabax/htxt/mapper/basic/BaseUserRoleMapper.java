@@ -3,6 +3,7 @@ package com.eabax.htxt.mapper.basic;
 import java.util.List;
 
 import com.eabax.htxt.entity.basic.UserRole;
+import com.eabax.htxt.entity.basic.UserRoleParam;
 
 /**
 * @author zhanghb
@@ -12,6 +13,6 @@ import com.eabax.htxt.entity.basic.UserRole;
 
 public interface BaseUserRoleMapper {
 	
-	List<UserRole> selectUserRoles();
+	List<UserRole> selectUserRoles(UserRoleParam param);
 
 }

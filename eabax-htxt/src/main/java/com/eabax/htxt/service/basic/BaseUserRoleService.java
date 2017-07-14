@@ -1,10 +1,10 @@
 package com.eabax.htxt.service.basic;
 
 import com.eabax.common.entity.EasyUIResult;
-import com.eabax.common.utils.EResult;
+import com.eabax.htxt.entity.basic.UserRoleParam;
 
 public interface BaseUserRoleService {
 	
-	EasyUIResult selectUserRoles(Integer page, Integer rows) throws Exception;
+	EasyUIResult selectUserRoles(UserRoleParam param) throws Exception;
 
 }

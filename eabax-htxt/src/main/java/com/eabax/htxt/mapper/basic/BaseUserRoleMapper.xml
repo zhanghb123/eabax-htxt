@@ -3,17 +3,21 @@
 <mapper namespace="com.eabax.htxt.mapper.basic.BaseUserRoleMapper" >
 
   <sql id="Base_Column_List" >
-    user_role_id,
-	user_role_name,
-	user_role_desc,
-	is_init,
-	user_role_order
+    user_role_id,user_role_name,user_role_desc,is_init,user_role_order
   </sql>
   
-  <select id="selectUserRoles" resultType="userRole">
+  <select id="selectUserRoles" parameterType="userRoleParam" resultType="userRole">
     select
     <include refid="Base_Column_List" />
     from ba_user_role
+	<where>
+		<if test="userRoleName!= null and userRoleName.length()>0">
+			user_role_name LIKE concat(concat('%',#{userRoleName}),'%')
+		</if>
+	</where>
+	<if test="sort!=null">
+		order by ${sort} ${order}
+	</if>
   </select>
   
   

@@ -5,7 +5,7 @@ import java.util.List;
 /**
 * @author zhanghb
 * @version 2017年7月10日 下午4:34:53
-*
+*	EasyUI Datagrid 列表和分页参数
 */
 
 public class EasyUIResult {

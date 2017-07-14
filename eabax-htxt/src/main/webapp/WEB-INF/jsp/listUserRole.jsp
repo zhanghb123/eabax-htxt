@@ -6,41 +6,68 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+
 <title>角色列表</title>
 </head>
 
 <body>
 <div id="container">
-	<div id="hd"></div>
-    <div id="bd">
-    	<div id="main">
-        	<div class="search-box ue-clear">
-
-                <div class="search-button">
-                	<a href="javascript:search();" class="easyui-linkbutton" iconCls="icon-search">查询</a>
-                </div>
-             </div>
-             
-             <div class="table">
-
-                <table id="listUserRole" class="easyui-datagrid" title="Basic DataGrid" 
-                style="width:100%;height:330px" remoteSort="true">
-					<thead>
-						<tr>
-							<th data-options="field:'userRoleId',width:100,hidden:true">角色id</th>
-							<th data-options="field:'userRoleName',width:250,sortable:true">角色名称</th>
-							<th data-options="field:'userRoleDesc',width:250,align:'right'">角色描述</th>
-							<th data-options="field:'isInit',width:150,align:'right'">是否系统初始化</th>
-							<th data-options="field:'userRoleOrder',width:150,align:'right'">排列顺序</th>
-						</tr>
-					</thead>
-				</table>
-                
-            </div>
-        </div>
+	<div class="search-box">
+       <table class="table-condition">
+       <tr>
+       	<td colspan="4" class="search-label">查询条件</td>
+       </tr>
+       <tbody class="search-condition">
+       <tr>
+       	<th>
+       		角色名称：
+       	</th>
+       	<td>
+       		<input id="userRoleName" name="userRoleName" type="text">
+       	</td>
+       	<th>
+       		角色名称：
+       	</th>
+       	<td>
+       		<input id="userRoleName1" name="userRoleName" type="text">
+       	</td>
+       </tr>
+       <tr>
+       	<th>
+       		角色名称：
+       	</th>
+       	<td>
+       		<input id="userRoleName2" name="userRoleName" type="text">
+       	</td>
+       	<th>
+       		角色名称：
+       	</th>
+       	<td>
+       		<input id="userRoleName3" name="userRoleName" type="text">
+       	</td>
+       </tr>
+       </tbody>
+       </table>
+       &nbsp;&nbsp;<a href="javascript:;" class="easyui-linkbutton" iconCls="icon-add">新增</a>
+       &nbsp;&nbsp;<a href="javascript:search();" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+       	
     </div>
+    <div class="data-box">
+		<table id="listUserRole" class="easyui-datagrid" title="Basic DataGrid" 
+            style="width:100%;height:320px" remoteSort="true">
+		<thead>
+		<tr>
+			<th data-options="field:'userRoleId',width:100,hidden:true">角色id</th>
+			<th data-options="field:'userRoleName',width:250,sortable:true">角色名称</th>
+			<th data-options="field:'userRoleDesc',width:250,align:'right'">角色描述</th>
+			<th data-options="field:'isInit',width:150,align:'right',valign:'middle'">是否系统初始化</th>
+			<th data-options="field:'userRoleOrder',width:150,align:'right'">排列顺序</th>
+		</tr>
+		</thead>
+		</table>
+	</div>
 </div>
-
 </body>
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
@@ -133,37 +160,30 @@ $(function(){
 	
 })
 
-
-	var toolbar = [
-	{
-		text:'新增',
-		iconCls:'icon-add',
-		handler:function(){
-			alert('新增');
-		}
-	},
-	{
-		text:'删除',
-		iconCls:'icon-cut',
-		handler:function(){
-			alert('删除');
-		}
-	}
-	]
-	
 function search(){
-	$('#listUserRole').datagrid('reload');
+	var userRoleName = $("#userRoleName").val();
+	var param = {"userRoleName" :userRoleName};
+	$('#listUserRole').datagrid('reload',param);
 }
 
-
-function alertColumn(sort,order){ 
-	alert("22");
-	}
 	
 function test(){
 	var rows = $("#listUserRole").datagrid("getSelections");
 	for(var i=0;i<rows.length;i++){
 	}
 }
+
+$(function(){  
+	$(".search-label").click(function(){
+		if($(".search-condition").css("display")=='none' ){
+			$(".search-condition").css("display","block");
+			$(".search-label").html("收缩地址");
+			
+		}else {
+			$(".search-condition").css("display","none");
+			$(".search-label").html("展开地址");
+		}  
+    });   
+});  
 </script>
 </html>
